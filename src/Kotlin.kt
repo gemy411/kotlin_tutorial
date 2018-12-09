@@ -1,23 +1,21 @@
 fun main(args: Array<String>) {
 
-    val onetoten = 1..10
-    val alpha = "A".."Z"
-    println("R in alpha ? : ${"R" in alpha}")
-    val tento1 = 10.downTo(1)
-    val twoto20 = 2.rangeTo(20)
-    val rng3 = onetoten.step(3)
-    for (x in rng3) {
-        println("rang3 : $x")
+
+    val age = 8
+    if (age < 5) {
+        println("ok")
+    }else {
+        println("shit")
+    }
+    when (age) {
+        0, 1, 2, 3, 4 -> println("when age")
+        5 -> println("hsit")
+        in 6..17 -> {
+            val grade = age - 5
+            println("go to grade $grade")
+        }
+        else -> println("go home")
+
 
     }
-    println(tento1 + twoto20)
-    if (11 in tento1) {
-        println("yes 2 is in tento1")
-    } else {
-        println("no is not !!")
-    }
-    for(x in tento1.reversed()) println("Reverse : $x")
-
-
-
 }
