@@ -1,25 +1,31 @@
-import java.lang.IllegalArgumentException
 
 fun main(args: Array<String>) {
-
-    val map = mutableMapOf<Int, Any?>()
-
-    val map2 = mutableMapOf(1 to "Doug", 2 to 25)
-
-    map[1] = "Derek"
-    map[2] = 42
-
-    println("Map size : ${map.size}")
-
-    map.put(3, "pittsss")
-
-//    map.remove(2)
-
-    for ((x, y) in map) {
-        println("Key : $x Value : $y ")
-    }
-
-
-
+    val bowswer = Animal("Bowswer", 20.0, 13.5)
+    bowswer.getInfo()
 
 }
+
+open class Animal(val name: String,
+                  var height: Double,
+                  var weight: Double) {
+    init {
+        val regex = Regex(".*\\d+.*")
+
+        require(!name.matches(regex)) {
+            "Animal name can't contaion numbers"
+        }
+        require(height > 0){
+            "Height must be greater than 0"
+        }
+        require(weight > 0){
+            "Height must be greater than 0"
+        }
+
+    }
+
+    open fun getInfo(): Unit {
+        println("$name is $height tall and weighs $weight")
+    }
+}
+
+
