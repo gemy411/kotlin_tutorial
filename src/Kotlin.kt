@@ -6,6 +6,10 @@ fun main(args: Array<String>) {
     val doggy = Dog("doggy", 22.0, 34.0, "gemy")
     doggy.getInfo()
 
+    val birdy = Bird("birdy", true)
+    birdy.fly(10.0)
+
+
 }
 
 open class Animal(val name: String,
@@ -40,5 +44,22 @@ class Dog(name: String,
     }
 
 }
+
+interface Flyable {
+    var flies: Boolean
+    fun fly(distMile: Double): Unit
+
+}
+
+class Bird constructor(val name: String,
+                       override var flies: Boolean = true)
+    : Flyable {
+    override fun fly(distMile: Double) : Unit {
+        if (flies) {
+            println("$name flies $distMile miles")
+        }
+    }
+}
+
 
 
