@@ -1,54 +1,49 @@
 fun main(args: Array<String>) {
 
-    fun add(num1: Int, num2: Int): Int = num1 + num2
+   val numList = 1..20
+    val evenList = numList.filter { it % 2 == 0 }
+    evenList.forEach{n -> println(n) }
 
-    println("5 + 4 = ${add(5, 4)}")
+    val mult3 = makeMathFunc(3)
+    mult3(5)
+    println(mult3(3))
 
-    fun subtract(num1: Int = 1, num2: Int = 1) = num1 - num2
-    println("9-5 = ${subtract(9, 5)}")
-    println("9 + 11 = ${add(num2 = 11, num1 = 9)}")
+    val multiply2 = {num1: Int -> num1 * 2}
+//    fun multiplyBy2(number: Int): Int {
+//        return number * 2
+//    }
+    val numList2 = arrayOf(1, 2, 3, 4, 5)
+    mathOnList(numList2, multiply2)
+    mathOnList(numList2) {
+       it * 2
+    }
 
-    fun sayHello(name: String): Unit = println("Hello $name")
-    sayHello("dude")
+    val arrayOfNumbers = arrayOf(0, 12, 0, 1, 5, 0, 3, 0)
+    operations(arrayOfNumbers,{ it1:Int , it2: Int ->
+            println("success $it1 and $it2")
 
-    val (two, three) = nextTwo(1)
-    println("1 $two $three")
+    },{
+        println("Failure $it")
+    })
 
-    println("Sum = ${getSum(1,2,3,4,5)}")
-
-    val multiply = {num1: Int, num2: Int -> num1 * num2}
-    println("5 * 3 = ${multiply(5,3)}")
-
-    println("! = ${factorial2(122)}")
 
 
 
 }
+fun makeMathFunc (num1: Int): (Int) -> Int = {num2 -> num1 * num2}
+fun mathOnList(numList: Array<Int>, myFunc: (num: Int) -> Int) {
+ for (num in numList) {
+  println("mathONList ${myFunc(num)}")
 
-fun nextTwo(num: Int): Pair<Int, Int> {
-    return Pair(num + 1, num + 2)
+ }
 }
-
-fun getSum(vararg nums: Int): Int {
-    var sum = 0 
-    nums.forEach { n -> sum += n }
-    return sum
-}
-
-fun fact(x: Int): Int {
-    tailrec fun factTail(y: Int, z: Int): Int {
-        if (y == 0) return z
-
-        else return factTail(y - 1, y * z)
+fun operations(numbers: Array<Int>, onSuccess: (num: Int, num2 : Int) -> Unit, onFailure: (num: Int) -> Unit) {
+    for (num in numbers) {
+        if (num == 0) {
+            onFailure(num)
+        }else{
+            onSuccess(num,10)
+        }
 
     }
-    return factTail(x, 1)
-
-}
-
-fun factorial2(x: Int): Int {
-    if (x == 0) return 1
-
-    return x * factorial2(x - 1)
-
 }
