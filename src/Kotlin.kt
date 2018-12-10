@@ -1,20 +1,16 @@
+import java.lang.IllegalArgumentException
+
 fun main(args: Array<String>) {
 
-    val numList2 = 1..20
-    val listSum = numList2.reduce{ x, y -> x + y}
-    println("$listSum")
-    val listSum2 = numList2.fold(5){ x , y -> x + y }
+    val divisor = 0
+    try {
+        if (divisor == 0) {
+            throw IllegalArgumentException("Can't divide by zero")
 
-    println("Even : ${numList2.any{ it % 2 == 0}}")
-    
-    val big3 = numList2.filter { it > 3  }
-    big3.forEach({n -> println(">3 : $n")})
-
-    val times7 = numList2.map { it * 7  }
-    times7.forEach({n -> println("*7 : $n")})
-
-
-
-
-
+        } else {
+            println("5 / $divisor = ${5 / divisor}")
+        }
+    } catch (e: IllegalArgumentException) {
+        println("${e.message}")
+    }
 }
