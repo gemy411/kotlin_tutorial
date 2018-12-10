@@ -2,24 +2,22 @@ import java.lang.IllegalArgumentException
 
 fun main(args: Array<String>) {
 
-    var list1: MutableList<Int> = mutableListOf(1, 2, 3, 4, 5)
-    val list2: List<Int> = listOf(1, 2, 3, 4, 5)
+    val map = mutableMapOf<Int, Any?>()
 
-    list1.add(6)
-    println("1st : ${list1.first()}")
-    println("last: ${list1.last()}")
+    val map2 = mutableMapOf(1 to "Doug", 2 to 25)
 
-    println("2nd : ${list1[2]}")
+    map[1] = "Derek"
+    map[2] = 42
 
-    var list3 = list1.subList(0, 3)
+    println("Map size : ${map.size}")
 
-    println("length: ${list1.size}")
+    map.put(3, "pittsss")
 
-    list3.clear()
-    list1.removeAt(1)
-    list1.forEach({n -> println("Multable List : $n")})
+//    map.remove(2)
 
-
+    for ((x, y) in map) {
+        println("Key : $x Value : $y ")
+    }
 
 
 
